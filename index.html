@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PJOK Seru: Belajar Teknik Dasar Sepak Bola</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#10B981',
+                            darkGreen: '#047857',
+                            yellow: '#FBBF24',
+                            sky: '#0EA5E9',
+                            orange: '#F97316',
+                            grass: '#059669'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Fredoka', 'sans-serif'],
+                        body: ['Nunito', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #F0FDF4;
+        }
+        h1, h2, h3, .font-heading {
+            font-family: 'Fredoka', sans-serif;
+        }
+        .bounce-gentle {
+            animation: bounceGentle 2s infinite;
+        }
+        @keyframes bounceGentle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .spin-slow {
+            animation: spin 12s linear infinite;
+        }
+        .spin-on-hover:hover {
+            animation: spin 1.5s ease-in-out infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="sticky top-0 z-50 bg-emerald-600 text-white shadow-md border-b-4 border-yellow-400">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#hero" class="flex items-center gap-2 group">
+                <div class="bg-yellow-400 text-emerald-800 p-2 rounded-full font-bold text-xl w-10 h-10 flex items-center justify-center shadow-md transform group-hover:rotate-45 transition duration-300">
+                    <i class="fa-solid fa-futbol spin-slow"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-wide leading-tight">PJOK SERU</h1>
+                    <p class="text-xs text-emerald-100 font-semibold hidden sm:block">Teknik Dasar Sepak Bola SD</p>
+                </div>
+            </a>
+            
+            <nav class="hidden md:flex items-center gap-2 font-heading font-medium">
+                <a href="#pengenalan" class="px-3 py-1.5 rounded-lg hover:bg-emerald-700 transition">Pengenalan</a>
+                <a href="#ai-simulator" class="px-3 py-1.5 rounded-lg hover:bg-emerald-700 transition text-yellow-300 font-bold"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Visual</a>
+                <a href="#teknik" class="px-3 py-1.5 rounded-lg hover:bg-emerald-700 transition">Teknik Dasar</a>
+                <a href="#video" class="px-3 py-1.5 rounded-lg hover:bg-emerald-700 transition">Video Pembelajaran</a>
+                <a href="#kuis" class="px-3 py-1.5 bg-yellow-400 text-emerald-900 font-bold rounded-lg hover:bg-yellow-300 transition shadow">Kuis Interaktif</a>
+                <a href="#pembuat" class="px-3 py-1.5 rounded-lg hover:bg-emerald-700 transition">Profil Pembuat</a>
+            </nav>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="menu-btn" class="md:hidden text-white text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-emerald-700 px-4 pt-2 pb-4 space-y-2 font-heading border-t border-emerald-500">
+            <a href="#pengenalan" class="block py-2 px-3 hover:bg-emerald-800 rounded-lg text-white">Pengenalan</a>
+            <a href="#ai-simulator" class="block py-2 px-3 hover:bg-emerald-800 rounded-lg text-yellow-300 font-bold">AI Simulator Visual</a>
+            <a href="#teknik" class="block py-2 px-3 hover:bg-emerald-800 rounded-lg text-white">Teknik Dasar</a>
+            <a href="#video" class="block py-2 px-3 hover:bg-emerald-800 rounded-lg text-white">Video Pembelajaran</a>
+            <a href="#kuis" class="block py-2 px-3 bg-yellow-400 text-emerald-900 font-bold rounded-lg">Kuis Interaktif</a>
+            <a href="#pembuat" class="block py-2 px-3 hover:bg-emerald-800 rounded-lg text-white">Profil Pembuat</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="bg-gradient-to-b from-emerald-600 to-emerald-500 text-white py-12 md:py-16 px-4 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+            <div class="text-center md:text-left md:w-1/2">
+                <span class="bg-yellow-400 text-emerald-900 px-4 py-1 rounded-full text-sm font-bold shadow-sm inline-block mb-3 uppercase tracking-wider">Modul Interaktif PJOK SD</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">Mari Belajar Teknik Dasar <span class="text-yellow-300">Sepak Bola!</span> ⚽</h2>
+                <p class="text-emerald-100 text-base md:text-lg mb-6 font-medium">Belajar sepak bola jadi lebih mudah, interaktif, dan menyenangkan dengan simulasi visual gerak AI dan suara pembaca materi!</p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-3">
+                    <a href="#ai-simulator" class="bg-yellow-400 text-emerald-950 px-6 py-3 rounded-full font-bold text-lg hover:bg-yellow-300 transform hover:-translate-y-1 transition shadow-lg flex items-center gap-2">
+                        <i class="fa-solid fa-play"></i> Simulator Visual AI
+                    </a>
+                    <a href="#kuis" class="bg-emerald-800 border-2 border-emerald-400 text-white px-6 py-3 rounded-full font-bold text-lg hover:bg-emerald-700 transform hover:-translate-y-1 transition shadow-md flex items-center gap-2">
+                        <i class="fa-solid fa-gamepad"></i> Main Kuis
+                    </a>
+                </div>
+            </div>
+            
+            <div class="md:w-1/2 flex justify-center">
+                <!-- Interactive 3D/Vector Soccer Ball graphic -->
+                <div class="relative w-64 h-64 md:w-80 md:h-80 bg-emerald-400/30 rounded-full flex items-center justify-center p-4 backdrop-blur-sm border-4 border-yellow-300/50 shadow-2xl cursor-pointer group" onclick="spinHeroBall()">
+                    <svg id="hero-ball-svg" viewBox="0 0 200 200" class="w-full h-full bounce-gentle transition-transform duration-700">
+                        <circle cx="100" cy="100" r="90" fill="#10B981" stroke="#FBBF24" stroke-width="6"/>
+                        <!-- Field Markings -->
+                        <path d="M 10 100 A 90 90 0 0 0 190 100" fill="none" stroke="#A7F3D0" stroke-width="3" stroke-dasharray="5 5"/>
+                        <circle cx="100" cy="100" r="30" fill="none" stroke="#A7F3D0" stroke-width="3"/>
+                        <!-- Soccer Ball Icon Center -->
+                        <g transform="translate(60, 60) scale(0.8)">
+                            <circle cx="50" cy="50" r="45" fill="#FFFFFF" stroke="#1E293B" stroke-width="4"/>
+                            <polygon points="50,25 65,36 60,55 40,55 35,36" fill="#1E293B"/>
+                            <polygon points="50,25 65,36 78,25 70,10 50,15" fill="#475569"/>
+                            <polygon points="65,36 60,55 78,60 88,46 78,25" fill="#475569"/>
+                            <polygon points="60,55 40,55 38,72 50,82 62,72" fill="#475569"/>
+                            <polygon points="40,55 35,36 22,25 12,46 22,60" fill="#475569"/>
+                            <polygon points="35,36 50,25 50,15 30,10 22,25" fill="#475569"/>
+                        </g>
+                    </svg>
+                    <div class="absolute bottom-2 bg-yellow-400 text-emerald-950 text-xs font-bold px-3 py-1 rounded-full shadow border border-emerald-600 opacity-90 group-hover:opacity-100">
+                        Klik Bola untuk Putar! ⚽
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENT WRAPPER -->
+    <main class="max-w-5xl mx-auto px-4 py-10 space-y-16 flex-grow">
+
+        <!-- 1. PENGENALAN SEPAK BOLA -->
+        <section id="pengenalan" class="bg-white rounded-3xl p-6 md:p-8 shadow-xl border-2 border-emerald-100 relative">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-3">
+                    <div class="bg-emerald-100 text-emerald-700 p-3 rounded-2xl text-2xl font-bold">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-emerald-800">Apa Itu Sepak Bola?</h2>
+                        <p class="text-sm text-slate-500">Mengenal permainan paling populer di dunia</p>
+                    </div>
+                </div>
+                <!-- Text To Speech Button -->
+                <button onclick="speakText('Sepak bola adalah permainan beregu yang dimainkan oleh dua tim dengan masing-masing sebelas orang pemain. Tujuannya memasukkan bola ke gawang lawan tanpa menggunakan tangan.')" class="bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold px-3 py-2 rounded-xl text-xs flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-volume-high text-amber-600"></i> Dengarkan Suara
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                <div class="bg-emerald-50 rounded-2xl p-5 border border-emerald-200 hover:shadow-md transition">
+                    <div class="text-emerald-600 text-3xl mb-2 flex items-center justify-between">
+                        <i class="fa-solid fa-users"></i>
+                        <i class="fa-solid fa-futbol text-emerald-300 text-xl spin-on-hover cursor-pointer"></i>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-emerald-900 mb-1">Permainan Beregu</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Dimainkan oleh 2 tim. Masing-masing tim terdiri dari 11 orang pemain di lapangan.</p>
+                </div>
+                <div class="bg-amber-50 rounded-2xl p-5 border border-amber-200 hover:shadow-md transition">
+                    <div class="text-amber-600 text-3xl mb-2 flex items-center justify-between">
+                        <i class="fa-solid fa-trophy"></i>
+                        <i class="fa-solid fa-futbol text-amber-300 text-xl spin-on-hover cursor-pointer"></i>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-amber-900 mb-1">Tujuan Utama</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Mencetak gol terbanyak ke gawang lawan dengan memasukkan bola menggunakan kaki, dada, atau kepala.</p>
+                </div>
+                <div class="bg-sky-50 rounded-2xl p-5 border border-sky-200 hover:shadow-md transition">
+                    <div class="text-sky-600 text-3xl mb-2 flex items-center justify-between">
+                        <i class="fa-solid fa-hand-slash"></i>
+                        <i class="fa-solid fa-futbol text-sky-300 text-xl spin-on-hover cursor-pointer"></i>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-sky-900 mb-1">Aturan Utama</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Pemain lapangan tidak boleh menyentuh bola dengan tangan. Hanya Kiper yang boleh memegang bola!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SIMULATOR VISUAL GERAK AI (NEW FEATURE) -->
+        <section id="ai-simulator" class="bg-white rounded-3xl p-6 md:p-8 shadow-xl border-4 border-emerald-300 relative">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div>
+                    <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1">
+                        <i class="fa-solid fa-wand-magic-sparkles text-emerald-600"></i> Fitur AI Simulator Gerak
+                    </span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 mt-1">Visualisasi Animasi Gerak Teknik</h2>
+                    <p class="text-slate-600 text-sm">Pilih gerakan di bawah ini untuk melihat simulasi visual lintasan bola dan posisi tubuh secara real-time.</p>
+                </div>
+                <!-- Selector Motion -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="setAiMotion('kick')" id="btn-motion-kick" class="motion-tab-btn active-tab bg-emerald-600 text-white font-bold px-3 py-2 rounded-xl text-xs flex items-center gap-1.5 shadow">
+                        ⚽ Menendang
+                    </button>
+                    <button onclick="setAiMotion('dribble')" id="btn-motion-dribble" class="motion-tab-btn bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3 py-2 rounded-xl text-xs flex items-center gap-1.5">
+                        🏃 Menggiring
+                    </button>
+                    <button onclick="setAiMotion('control')" id="btn-motion-control" class="motion-tab-btn bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3 py-2 rounded-xl text-xs flex items-center gap-1.5">
+                        🛑 Mengontrol
+                    </button>
+                    <button onclick="setAiMotion('head')" id="btn-motion-head" class="motion-tab-btn bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3 py-2 rounded-xl text-xs flex items-center gap-1.5">
+                        🗣️ Menyundul
+                    </button>
+                </div>
+            </div>
+
+            <!-- Visual Canvas Canvas Area -->
+            <div class="relative bg-gradient-to-b from-sky-200 to-emerald-600 rounded-2xl overflow-hidden border-4 border-slate-800 shadow-inner h-72 md:h-80 flex flex-col items-center justify-center">
+                <canvas id="aiCanvas" class="w-full h-full"></canvas>
+
+                <!-- Floating Canvas Controls -->
+                <div class="absolute bottom-4 left-4 right-4 flex justify-between items-center bg-slate-900/80 backdrop-blur-md px-4 py-2.5 rounded-xl text-white text-xs">
+                    <div class="flex items-center gap-2">
+                        <button onclick="toggleAiAnimation()" id="ai-play-btn" class="bg-yellow-400 text-slate-900 font-bold px-3 py-1.5 rounded-lg hover:bg-yellow-300 flex items-center gap-1">
+                            <i class="fa-solid fa-pause"></i> Pause
+                        </button>
+                        <span id="ai-motion-title" class="font-bold text-yellow-300 text-sm">Teknik Menendang Bola</span>
+                    </div>
+                    <span id="ai-motion-desc" class="hidden sm:inline text-slate-200">Perhatikan ayunan kaki dan lintasan bola lurus.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. TEKNIK DASAR SEPAK BOLA -->
+        <section id="teknik" class="space-y-6">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Materi Utama</span>
+                <h2 class="text-3xl font-extrabold text-slate-800 mt-2">4 Teknik Dasar Sepak Bola</h2>
+                <p class="text-slate-600 mt-1">Klik tombol suara untuk mendengarkan materi, atau tombol detail untuk langkah-langkahnya!</p>
+            </div>
+
+            <!-- Grid Kartu Teknik -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Teknik 1: Menendang -->
+                <div class="bg-white rounded-3xl p-6 shadow-md hover:shadow-xl border-2 border-emerald-100 transition group flex flex-col justify-between relative">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-emerald-500 text-white font-bold px-3 py-1 rounded-xl text-xs">Teknik 1</span>
+                            <div class="flex items-center gap-2">
+                                <button onclick="speakText('Menendang bola digunakan untuk mengumpan bola ke teman atau menembak ke gawang lawan. Gunakan kaki bagian dalam untuk umpan pendek dan akurat.')" title="Dengarkan Suara" class="p-2 bg-emerald-50 text-emerald-600 hover:bg-emerald-100 rounded-lg text-xs font-bold transition">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                </button>
+                                <i class="fa-solid fa-futbol text-2xl text-emerald-500 spin-on-hover cursor-pointer"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2">1. Menendang Bola (Passing & Shooting)</h3>
+                        <p class="text-slate-600 text-sm mb-4">Digunakan untuk mengumpan bola ke teman atau menembak bola langsung ke arah gawang lawan.</p>
+                        
+                        <div class="space-y-2 bg-slate-50 p-4 rounded-2xl text-xs font-medium text-slate-700">
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-600 mt-0.5"></i>
+                                <span><strong>Kaki Bagian Dalam:</strong> Untuk umpan pendek & akurat.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-600 mt-0.5"></i>
+                                <span><strong>Punggung Kaki (Kura-kura):</strong> Untuk tendangan keras/jauh.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-600 mt-0.5"></i>
+                                <span><strong>Kaki Bagian Luar:</strong> Untuk umpan kecoh atau melengkung.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="openModal('menendang')" class="mt-5 w-full bg-emerald-100 hover:bg-emerald-500 hover:text-white text-emerald-800 font-bold py-2.5 rounded-xl transition text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-eye"></i> Lihat Cara Melakukan
+                    </button>
+                </div>
+
+                <!-- Teknik 2: Mengiring (Dribbling) -->
+                <div class="bg-white rounded-3xl p-6 shadow-md hover:shadow-xl border-2 border-amber-100 transition group flex flex-col justify-between relative">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-amber-500 text-white font-bold px-3 py-1 rounded-xl text-xs">Teknik 2</span>
+                            <div class="flex items-center gap-2">
+                                <button onclick="speakText('Menggiring bola adalah membawa bola berlari menuju daerah lawan sambil menjaga bola tetap dekat di kaki agar tidak direbut lawan.')" title="Dengarkan Suara" class="p-2 bg-amber-50 text-amber-600 hover:bg-amber-100 rounded-lg text-xs font-bold transition">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                </button>
+                                <i class="fa-solid fa-futbol text-2xl text-amber-500 spin-on-hover cursor-pointer"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2">2. Mengiring Bola (Dribbling)</h3>
+                        <p class="text-slate-600 text-sm mb-4">Membawa bola berlari menuju area lawan sambil menjaga bola agar tidak direbut.</p>
+                        
+                        <div class="space-y-2 bg-slate-50 p-4 rounded-2xl text-xs font-medium text-slate-700">
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-amber-600 mt-0.5"></i>
+                                <span>Pandangan mata tidak boleh hanya tertuju pada bola (lihat depan).</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-amber-600 mt-0.5"></i>
+                                <span>Bola digulirkan perlahan dekat dengan kaki.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-amber-600 mt-0.5"></i>
+                                <span>Dapat menggunakan berlari berbelok-belok (Zig-Zag).</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="openModal('dribble')" class="mt-5 w-full bg-amber-100 hover:bg-amber-500 hover:text-white text-amber-900 font-bold py-2.5 rounded-xl transition text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-eye"></i> Lihat Cara Melakukan
+                    </button>
+                </div>
+
+                <!-- Teknik 3: Menghentikan (Control) -->
+                <div class="bg-white rounded-3xl p-6 shadow-md hover:shadow-xl border-2 border-sky-100 transition group flex flex-col justify-between relative">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-sky-500 text-white font-bold px-3 py-1 rounded-xl text-xs">Teknik 3</span>
+                            <div class="flex items-center gap-2">
+                                <button onclick="speakText('Menghentikan atau mengontrol bola dilakukan untuk menguasai umpan dari teman. Gunakan telapak kaki atau kaki bagian dalam.')" title="Dengarkan Suara" class="p-2 bg-sky-50 text-sky-600 hover:bg-sky-100 rounded-lg text-xs font-bold transition">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                </button>
+                                <i class="fa-solid fa-futbol text-2xl text-sky-500 spin-on-hover cursor-pointer"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2">3. Menghentikan Bola (Controlling)</h3>
+                        <p class="text-slate-600 text-sm mb-4">Menerima dan menguasai bola dari umpan teman agar bola siap ditendang lagi.</p>
+                        
+                        <div class="space-y-2 bg-slate-50 p-4 rounded-2xl text-xs font-medium text-slate-700">
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-sky-600 mt-0.5"></i>
+                                <span><strong>Telapak Kaki:</strong> Menginjak bagian atas bola bergulir.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-sky-600 mt-0.5"></i>
+                                <span><strong>Kaki Dalam:</strong> Menahan laju bola dari samping.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-sky-600 mt-0.5"></i>
+                                <span><strong>Dada & Paha:</strong> Untuk menghentikan bola melambung tinggi.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="openModal('kontrol')" class="mt-5 w-full bg-sky-100 hover:bg-sky-500 hover:text-white text-sky-900 font-bold py-2.5 rounded-xl transition text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-eye"></i> Lihat Cara Melakukan
+                    </button>
+                </div>
+
+                <!-- Teknik 4: Menyundul (Heading) -->
+                <div class="bg-white rounded-3xl p-6 shadow-md hover:shadow-xl border-2 border-rose-100 transition group flex flex-col justify-between relative">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-rose-500 text-white font-bold px-3 py-1 rounded-xl text-xs">Teknik 4</span>
+                            <div class="flex items-center gap-2">
+                                <button onclick="speakText('Menyundul bola adalah mendorong bola menggunakan dahi atau jidat saat bola melayang tinggi. Jangan gunakan puncak kepala agar tidak sakit.')" title="Dengarkan Suara" class="p-2 bg-rose-50 text-rose-600 hover:bg-rose-100 rounded-lg text-xs font-bold transition">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                </button>
+                                <i class="fa-solid fa-futbol text-2xl text-rose-500 spin-on-hover cursor-pointer"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2">4. Menyundul Bola (Heading)</h3>
+                        <p class="text-slate-600 text-sm mb-4">Mendorong atau mengarahkan bola menggunakan jidat/dahi saat bola melayang tinggi.</p>
+                        
+                        <div class="space-y-2 bg-slate-50 p-4 rounded-2xl text-xs font-medium text-slate-700">
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-rose-600 mt-0.5"></i>
+                                <span>Gunakan <strong>Dahi (Jidat)</strong>, jangan puncak kepala agar tidak sakit!</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-rose-600 mt-0.5"></i>
+                                <span>Mata tetap terbuka dan memperhatikan arah bola.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-rose-600 mt-0.5"></i>
+                                <span>Tarik leher ke belakang lalu dorong ke depan.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="openModal('menyundul')" class="mt-5 w-full bg-rose-100 hover:bg-rose-500 hover:text-white text-rose-900 font-bold py-2.5 rounded-xl transition text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-eye"></i> Lihat Cara Melakukan
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. VIDEO PEMBELAJARAN -->
+        <section id="video" class="bg-white rounded-3xl p-6 md:p-8 shadow-xl border-2 border-emerald-100">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <div class="inline-flex items-center gap-2 bg-red-100 text-red-600 px-4 py-1.5 rounded-full font-bold text-sm mb-2">
+                    <i class="fa-solid fa-circle-play"></i> Media Pembelajaran Video
+                </div>
+                <h2 class="text-3xl font-extrabold text-slate-800">Tonton & Praktikkan</h2>
+                <p class="text-slate-600 text-sm mt-1">Simak video gerak dasar sepak bola agar gerakanmu semakin sempurna!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Video 1 -->
+                <div class="bg-slate-900 rounded-2xl overflow-hidden shadow-lg border-4 border-slate-100 flex flex-col">
+                    <div class="relative aspect-video w-full">
+                        <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/8tH2mYf696w" title="Tutorial Teknik Dasar Sepak Bola SD" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-white flex-grow">
+                        <h4 class="font-bold text-slate-800 text-base mb-1">Teknik Menendang & Mengontrol Bola</h4>
+                        <p class="text-xs text-slate-500">Panduan mudah latihan dasar sepak bola untuk siswa SD.</p>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="bg-slate-900 rounded-2xl overflow-hidden shadow-lg border-4 border-slate-100 flex flex-col">
+                    <div class="relative aspect-video w-full">
+                        <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/P-17WfFq0o0" title="Variasi Menggiring Bola SD" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 bg-white flex-grow">
+                        <h4 class="font-bold text-slate-800 text-base mb-1">Variasi Menggiring & Latihan Zig-zag</h4>
+                        <p class="text-xs text-slate-500">Latihan kelincahan dan kontrol bola sederhana di sekolah.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. KUIS INTERAKTIF WITH WEB AUDIO SYNTH -->
+        <section id="kuis" class="bg-gradient-to-br from-yellow-50 to-amber-100 rounded-3xl p-6 md:p-8 shadow-xl border-4 border-yellow-300 relative overflow-hidden">
+            <div class="text-center max-w-xl mx-auto mb-8">
+                <span class="bg-yellow-400 text-emerald-950 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wide inline-flex items-center gap-1">
+                    <i class="fa-solid fa-star"></i> Uji Kepintaranmu
+                </span>
+                <h2 class="text-3xl font-black text-amber-900 mt-2">Kuis Seru Sepak Bola 🏆</h2>
+                <p class="text-amber-800 text-sm">Jawab 5 pertanyaan di bawah ini dan raih bintang terbanyak!</p>
+            </div>
+
+            <!-- Quiz Container -->
+            <div id="quiz-container" class="bg-white rounded-2xl p-6 md:p-8 shadow-md border border-amber-200">
+                <!-- Progress & Score Header -->
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
+                    <span id="question-number" class="font-heading font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-lg text-sm">Pertanyaan 1 dari 5</span>
+                    <div class="flex items-center gap-1 text-amber-500 font-bold text-lg" id="star-display">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- Question Text -->
+                <div class="mb-6 flex items-start justify-between gap-3">
+                    <h3 id="question-text" class="text-lg md:text-xl font-bold text-slate-800 leading-snug">Memuat Pertanyaan...</h3>
+                    <button onclick="readCurrentQuestion()" class="p-2 bg-yellow-100 hover:bg-yellow-200 text-yellow-800 rounded-lg text-xs font-bold transition flex-shrink-0" title="Bacakan Pertanyaan">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                </div>
+
+                <!-- Answer Options -->
+                <div id="options-container" class="grid grid-cols-1 gap-3">
+                    <!-- Options will be generated by JS -->
+                </div>
+
+                <!-- Feedback Area -->
+                <div id="feedback-box" class="hidden mt-4 p-4 rounded-xl text-center font-bold text-sm"></div>
+
+                <!-- Next Button -->
+                <div class="mt-6 flex justify-end">
+                    <button id="next-btn" onclick="nextQuestion()" class="hidden bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-2.5 rounded-xl transition text-sm flex items-center gap-2 shadow">
+                        Pertanyaan Selanjutnya <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Result View (Hidden Initially) -->
+            <div id="result-container" class="hidden bg-white rounded-2xl p-8 text-center shadow-lg border border-amber-200">
+                <div class="w-24 h-24 bg-yellow-100 text-yellow-500 rounded-full flex items-center justify-center mx-auto text-5xl mb-4 shadow-inner">
+                    <i id="result-icon" class="fa-solid fa-trophy"></i>
+                </div>
+                <h3 class="text-2xl font-black text-slate-800 mb-2">Selesai! Nilai Kamu:</h3>
+                <div class="text-5xl font-black text-emerald-600 mb-3" id="final-score">100</div>
+                <p id="result-message" class="text-slate-600 font-semibold mb-6">Luar biasa! Kamu master sepak bola sejati!</p>
+                <button onclick="resetQuiz()" class="bg-yellow-400 hover:bg-yellow-300 text-emerald-950 font-extrabold px-8 py-3 rounded-full shadow-lg transition transform hover:-translate-y-1 inline-flex items-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i> Coba Lagi
+                </button>
+            </div>
+        </section>
+
+        <!-- 6. PROFIL PEMBUAT (CREDIT) -->
+        <section id="pembuat" class="bg-gradient-to-r from-emerald-800 to-emerald-900 text-white rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden">
+            <div class="flex flex-col md:flex-row items-center gap-6 relative z-10">
+                <div class="w-24 h-24 md:w-32 md:h-32 bg-yellow-400 rounded-full flex items-center justify-center text-emerald-900 text-5xl font-bold shadow-lg border-4 border-white flex-shrink-0">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+                <div class="text-center md:text-left flex-grow">
+                    <span class="bg-emerald-700 text-yellow-300 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider inline-block mb-2 border border-emerald-600">Pengembang Media</span>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-white">Raffa Dwi Nugraha Krisnoe</h3>
+                    <p class="text-emerald-200 text-sm md:text-base font-semibold mt-1">NPM: <span class="text-yellow-300 tracking-wider">41182191240069</span></p>
+                    <p class="text-emerald-300 text-xs md:text-sm font-medium mt-0.5">Kelas / Mata Pelajaran: PJOK Sekolah Dasar (SD) - Teknik Dasar Sepak Bola</p>
+                    <p class="text-emerald-100 text-xs md:text-sm mt-3 max-w-xl">
+                        Media pembelajaran interaktif ini dirancang khusus dengan visual animasi AI, audio reader, dan kuis menyenangkan untuk siswa Sekolah Dasar (SD) dalam menguasai teknik dasar sepak bola.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-6 border-t-4 border-yellow-400 mt-auto">
+        <div class="max-w-5xl mx-auto px-4 text-center text-xs md:text-sm">
+            <p class="font-medium text-slate-300">© 2026 PJOK SD - Media Pembelajaran Teknik Dasar Sepak Bola Interaktif</p>
+            <p class="mt-1 text-slate-500">Dibuat oleh: <span class="text-emerald-400 font-bold">Raffa Dwi Nugraha Krisnoe</span> (NPM: 41182191240069)</p>
+        </div>
+    </footer>
+
+    <!-- MODAL POPUP TEKNIK (DETAIL LANGKAH) -->
+    <div id="detail-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 relative shadow-2xl border-4 border-emerald-400">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-2xl font-bold w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100">
+                &times;
+            </button>
+            <div id="modal-content" class="space-y-4">
+                <!-- Modal content dynamically injected -->
+            </div>
+            <button onclick="closeModal()" class="mt-6 w-full bg-emerald-600 text-white font-bold py-2.5 rounded-xl hover:bg-emerald-700 transition">
+                Tutup & Paham
+            </button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT FOR SIMULATOR, AUDIO SYNTH, TEXT-TO-SPEECH, & QUIZ -->
+    <script>
+        // --- 1. Mobile Navigation Toggle ---
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // --- 2. Hero Ball Spin Action ---
+        function spinHeroBall() {
+            const svg = document.getElementById('hero-ball-svg');
+            svg.style.transform = 'rotate(360deg) scale(1.1)';
+            setTimeout(() => {
+                svg.style.transform = 'rotate(0deg) scale(1.0)';
+            }, 700);
+        }
+
+        // --- 3. Text to Speech (Audio Reader) ---
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop ongoing speech
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'id-ID';
+                utterance.rate = 0.9;
+                utterance.pitch = 1.0;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                console.log("Browser tidak mendukung fitur Text-to-Speech.");
+            }
+        }
+
+        // --- 4. Web Audio Synthesizer (Sound Effects for Quiz) ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSoundEffect(isCorrect) {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            if (isCorrect) {
+                // Happy Arpeggio Tone
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1); // E5
+                osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.2); // G5
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+                osc.start(audioCtx.currentTime);
+                osc.stop(audioCtx.currentTime + 0.4);
+            } else {
+                // Low Buzz Tone
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(164.81, audioCtx.currentTime + 0.15);
+                gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+                osc.start(audioCtx.currentTime);
+                osc.stop(audioCtx.currentTime + 0.35);
+            }
+        }
+
+        // --- 5. AI Motion Simulator Canvas ---
+        const canvas = document.getElementById('aiCanvas');
+        const ctx = canvas.getContext('2d');
+        let currentMotion = 'kick';
+        let isAiPlaying = true;
+        let animFrameId;
+        let time = 0;
+
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const motionInfo = {
+            kick: { title: "Teknik Menendang Bola", desc: "Ayunkan kaki belakang dan tendang bola ke depan secara akurat." },
+            dribble: { title: "Teknik Menggiring Bola", desc: "Dorong bola perlahan bergantian dengan kaki sambil berlari." },
+            control: { title: "Teknik Mengontrol Bola", desc: "Hentikan bola yang datang menggunakan telapak atau kaki dalam." },
+            head: { title: "Teknik Menyundul Bola", desc: "Dorong dahi ke depan menyambut bola yang terbang melayang." }
+        };
+
+        function setAiMotion(motionKey) {
+            currentMotion = motionKey;
+            time = 0;
+            document.querySelectorAll('.motion-tab-btn').forEach(btn => {
+                btn.className = "motion-tab-btn bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3 py-2 rounded-xl text-xs flex items-center gap-1.5";
+            });
+            document.getElementById(`btn-motion-${motionKey}`).className = "motion-tab-btn bg-emerald-600 text-white font-bold px-3 py-2 rounded-xl text-xs flex items-center gap-1.5 shadow";
+
+            document.getElementById('ai-motion-title').textContent = motionInfo[motionKey].title;
+            document.getElementById('ai-motion-desc').textContent = motionInfo[motionKey].desc;
+        }
+
+        function toggleAiAnimation() {
+            isAiPlaying = !isAiPlaying;
+            const btn = document.getElementById('ai-play-btn');
+            btn.innerHTML = isAiPlaying ? '<i class="fa-solid fa-pause"></i> Pause' : '<i class="fa-solid fa-play"></i> Putar';
+        }
+
+        function drawSoccerBall(x, y, radius, angle = 0) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(angle);
+            // Outer Circle
+            ctx.beginPath();
+            ctx.arc(0, 0, radius, 0, Math.PI * 2);
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fill();
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = "#1E293B";
+            ctx.stroke();
+
+            // Pentagon Center
+            ctx.beginPath();
+            for (let i = 0; i < 5; i++) {
+                let a = (Math.PI * 2 / 5) * i;
+                let px = Math.cos(a) * (radius * 0.4);
+                let py = Math.sin(a) * (radius * 0.4);
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+            ctx.closePath();
+            ctx.fillStyle = "#1E293B";
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function renderAiSimulation() {
+            if (isAiPlaying) time += 0.04;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const w = canvas.width;
+            const h = canvas.height;
+            const groundY = h - 40;
+
+            // Draw Grass Ground
+            ctx.fillStyle = "#047857";
+            ctx.fillRect(0, groundY, w, 40);
+            ctx.fillStyle = "#059669";
+            ctx.fillRect(0, groundY, w, 6);
+
+            // Draw Stick Figure Player & Ball based on Motion
+            const centerX = w * 0.35;
+            const headY = groundY - 90;
+
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "#FFFFFF";
+            ctx.fillStyle = "#FFFFFF";
+
+            if (currentMotion === 'kick') {
+                // Player stance
+                let legSwing = Math.sin(time * 3) * 25;
+                let ballX = centerX + 40 + (Math.max(0, Math.sin(time * 3)) * 100);
+                let ballRot = (ballX * 0.05);
+
+                // Head & Body
+                ctx.beginPath(); ctx.arc(centerX, headY, 14, 0, Math.PI * 2); ctx.fill();
+                ctx.beginPath(); ctx.moveTo(centerX, headY + 14); ctx.lineTo(centerX, groundY - 45); ctx.stroke();
+                // Arms
+                ctx.beginPath(); ctx.moveTo(centerX, headY + 25); ctx.lineTo(centerX - 25, headY + 45); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(centerX, headY + 25); ctx.lineTo(centerX + 25, headY + 40); ctx.stroke();
+                // Support Leg
+                ctx.beginPath(); ctx.moveTo(centerX, groundY - 45); ctx.lineTo(centerX - 15, groundY); ctx.stroke();
+                // Kicking Leg
+                ctx.beginPath(); ctx.moveTo(centerX, groundY - 45); ctx.lineTo(centerX + 15 + legSwing, groundY); ctx.stroke();
+
+                // Ball
+                drawSoccerBall(ballX, groundY - 14, 14, ballRot);
+
+            } else if (currentMotion === 'dribble') {
+                let runCycle = Math.sin(time * 6);
+                let playerX = (w * 0.2) + ((time * 30) % (w * 0.5));
+                let ballX = playerX + 35 + (runCycle * 10);
+
+                // Head & Body
+                ctx.beginPath(); ctx.arc(playerX, headY, 14, 0, Math.PI * 2); ctx.fill();
+                ctx.beginPath(); ctx.moveTo(playerX, headY + 14); ctx.lineTo(playerX, groundY - 45); ctx.stroke();
+                // Arms
+                ctx.beginPath(); ctx.moveTo(playerX, headY + 25); ctx.lineTo(playerX - 20 * runCycle, headY + 45); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(playerX, headY + 25); ctx.lineTo(playerX + 20 * runCycle, headY + 45); ctx.stroke();
+                // Legs running
+                ctx.beginPath(); ctx.moveTo(playerX, groundY - 45); ctx.lineTo(playerX - 20 * runCycle, groundY); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(playerX, groundY - 45); ctx.lineTo(playerX + 20 * runCycle, groundY); ctx.stroke();
+
+                // Ball
+                drawSoccerBall(ballX, groundY - 14, 14, time * 5);
+
+            } else if (currentMotion === 'control') {
+                let ballX = (w * 0.8) - ((time * 40) % (w * 0.45));
+                let isStopped = ballX <= centerX + 30;
+                if (isStopped) ballX = centerX + 30;
+
+                // Head & Body
+                ctx.beginPath(); ctx.arc(centerX, headY, 14, 0, Math.PI * 2); ctx.fill();
+                ctx.beginPath(); ctx.moveTo(centerX, headY + 14); ctx.lineTo(centerX, groundY - 45); ctx.stroke();
+                // Control Leg up
+                ctx.beginPath(); ctx.moveTo(centerX, groundY - 45); ctx.lineTo(centerX - 15, groundY); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(centerX, groundY - 45); ctx.lineTo(centerX + 25, isStopped ? groundY - 20 : groundY - 10); ctx.stroke();
+
+                drawSoccerBall(ballX, groundY - 14, 14, ballX * 0.05);
+
+            } else if (currentMotion === 'head') {
+                let jumpY = Math.abs(Math.sin(time * 3)) * 40;
+                let curHeadY = headY - jumpY;
+                let curBodyY = (groundY - 45) - jumpY;
+                let ballY = (groundY - 130) + Math.abs(Math.sin(time * 3)) * 50;
+
+                // Head & Body
+                ctx.beginPath(); ctx.arc(centerX, curHeadY, 14, 0, Math.PI * 2); ctx.fill();
+                ctx.beginPath(); ctx.moveTo(centerX, curHeadY + 14); ctx.lineTo(centerX, curBodyY); ctx.stroke();
+                // Legs
+                ctx.beginPath(); ctx.moveTo(centerX, curBodyY); ctx.lineTo(centerX - 15, curBodyY + 35); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(centerX, curBodyY); ctx.lineTo(centerX + 15, curBodyY + 35); ctx.stroke();
+
+                drawSoccerBall(centerX + 25, ballY, 14, time * 4);
+            }
+
+            animFrameId = requestAnimationFrame(renderAiSimulation);
+        }
+
+        renderAiSimulation();
+
+        // --- 6. Modal Functions ---
+        const modalData = {
+            menendang: {
+                title: "Langkah Menendang Bola",
+                icon: "fa-shoe-prints",
+                color: "text-emerald-600",
+                steps: [
+                    "Berdiri sejajar di belakang bola.",
+                    "Posisikan kaki tumpu di samping bola dengan lutut sedikit ditekuk.",
+                    "Tarik kaki pemukul ke belakang lalu ayunkan ke depan mengenai bola.",
+                    "Gunakan <strong>kaki bagian dalam</strong> untuk umpan dekat yang akurat.",
+                    "Pandangan tertuju pada bola dan sasaran umpan."
+                ]
+            },
+            dribble: {
+                title: "Langkah Menggiring Bola",
+                icon: "fa-person-running",
+                color: "text-amber-600",
+                steps: [
+                    "Posisikan badan sedikit condong ke depan.",
+                    "Dorong bola perlahan menggunakan kaki bagian dalam atau luar.",
+                    "Jangan menendang bola terlalu jauh, jaga jarak bola tetap dekat dengan kaki.",
+                    "Pandangan bergantian antara bola dan arah depan.",
+                    "Lakukan variasi belok kanan-kiri (zig-zag)."
+                ]
+            },
+            kontrol: {
+                title: "Langkah Menghentikan Bola",
+                icon: "fa-stop-circle",
+                color: "text-sky-600",
+                steps: [
+                    "Fokuskan pandangan pada arah datangnya bola.",
+                    "Bergerak mendekati arah bola.",
+                    "Jika bola menyusur tanah: Gunakan <strong>telapak kaki</strong> (diinjak ringan) atau <strong>kaki dalam</strong>.",
+                    "Tarik sedikit kaki ke belakang saat menyentuh bola agar bola tidak memantul jauh.",
+                    "Jika bola melayang: Gunakan dada atau paha."
+                ]
+            },
+            menyundul: {
+                title: "Langkah Menyundul Bola",
+                icon: "fa-user-ninja",
+                color: "text-rose-600",
+                steps: [
+                    "Perhatikan arah datangnya bola melayang.",
+                    "Melompat atau berdiri tegak dengan mengambil sikap siap.",
+                    "Tarik kepala ke belakang, kencangkan otot leher.",
+                    "Dorong dahi ke depan hingga mengenai bola dengan keras.",
+                    "<strong>Penting:</strong> Gunakan Dahi (Jidat), jangan puncak kepala!"
+                ]
+            }
+        };
+
+        function openModal(type) {
+            const data = modalData[type];
+            if (!data) return;
+
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="flex items-center gap-3 border-b pb-3">
+                    <i class="fa-solid ${data.icon} text-3xl ${data.color}"></i>
+                    <h3 class="text-xl font-bold text-slate-800">${data.title}</h3>
+                </div>
+                <ul class="space-y-2 text-sm text-slate-700 pl-2">
+                    ${data.steps.map((step, idx) => `
+                        <li class="flex items-start gap-2">
+                            <span class="bg-slate-100 text-slate-800 font-bold rounded-full w-5 h-5 flex items-center justify-center text-xs flex-shrink-0 mt-0.5">${idx + 1}</span>
+                            <span>${step}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+            `;
+            document.getElementById('detail-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+        }
+
+        // --- 7. Quiz Logic ---
+        const questions = [
+            {
+                question: "Bagian kepala manakah yang paling aman dan tepat digunakan untuk menyundul bola?",
+                options: [
+                    "Puncak kepala (ubun-ubun)",
+                    "Dahi (Jidat)",
+                    "Kepala bagian belakang",
+                    "Telinga"
+                ],
+                answer: 1,
+                explanation: "Dahi (jidat) adalah tulang kepala yang paling keras dan aman untuk menyundul bola!"
+            },
+            {
+                question: "Satu-satunya pemain di dalam lapangan sepak bola yang boleh memegang bola dengan tangan adalah...",
+                options: [
+                    "Penyerang (Striker)",
+                    "Pemain Belakang (Bek)",
+                    "Penjaga Gawang (Kiper)",
+                    "Kapten Tim"
+                ],
+                answer: 2,
+                explanation: "Hanya Kiper (Penjaga Gawang) yang diizinkan menyentuh bola memakai tangan di dalam area penalti."
+            },
+            {
+                question: "Teknik dasar membawa bola sambil berlari menuju daerah lawan disebut...",
+                options: [
+                    "Passing (Menendang)",
+                    "Controlling (Menghentikan)",
+                    "Dribbling (Menggiring)",
+                    "Heading (Menyundul)"
+                ],
+                answer: 2,
+                explanation: "Dribbling atau menggiring bola adalah teknik mendorong bola perlahan sambil berlari."
+            },
+            {
+                question: "Untuk mengumpan bola jarak pendek kepada teman satu tim secara akurat, sebaiknya menggunakan...",
+                options: [
+                    "Kaki bagian dalam",
+                    "Tumit kaki",
+                    "Ujung jari kaki",
+                    "Punggung tangan"
+                ],
+                answer: 0,
+                explanation: "Kaki bagian dalam memberikan permukaan yang luas sehingga umpan menjadi sangat akurat."
+            },
+            {
+                question: "Berapa jumlah pemain sepak bola dalam satu tim di lapangan pertandingan?",
+                options: [
+                    "5 Orang",
+                    "6 Orang",
+                    "11 Orang",
+                    "15 Orang"
+                ],
+                answer: 2,
+                explanation: "Setiap tim sepak bola terdiri dari 11 orang pemain di lapangan."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        function loadQuestion() {
+            answered = false;
+            const q = questions[currentQuestion];
+            document.getElementById('question-number').textContent = `Pertanyaan ${currentQuestion + 1} dari ${questions.length}`;
+            document.getElementById('question-text').textContent = q.question;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            const feedbackBox = document.getElementById('feedback-box');
+            feedbackBox.classList.add('hidden');
+            document.getElementById('next-btn').classList.add('hidden');
+
+            q.options.forEach((option, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-xl border-2 border-slate-200 hover:border-emerald-400 hover:bg-emerald-50 transition text-sm font-semibold text-slate-700 flex items-center justify-between group";
+                btn.innerHTML = `
+                    <span>${String.fromCharCode(65 + idx)}. ${option}</span>
+                    <i class="fa-regular fa-circle text-slate-300 group-hover:text-emerald-500"></i>
+                `;
+                btn.onclick = () => selectAnswer(idx, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function readCurrentQuestion() {
+            const q = questions[currentQuestion];
+            speakText(`${q.question}. Pilihan jawaban: A. ${q.options[0]}. B. ${q.options[1]}. C. ${q.options[2]}. D. ${q.options[3]}.`);
+        }
+
+        function selectAnswer(selectedIndex, btnElement) {
+            if (answered) return;
+            answered = true;
+
+            const q = questions[currentQuestion];
+            const optionsBtns = document.getElementById('options-container').children;
+            const feedbackBox = document.getElementById('feedback-box');
+
+            if (selectedIndex === q.answer) {
+                score += 20;
+                playSoundEffect(true);
+                btnElement.className = "w-full text-left p-4 rounded-xl border-2 border-emerald-500 bg-emerald-100 text-emerald-900 font-bold text-sm flex items-center justify-between";
+                btnElement.querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg";
+                
+                feedbackBox.className = "mt-4 p-4 rounded-xl text-center font-bold text-sm bg-emerald-100 text-emerald-800 border border-emerald-300";
+                feedbackBox.innerHTML = `<i class="fa-solid fa-thumbs-up"></i> Benar Sekali! ${q.explanation}`;
+            } else {
+                playSoundEffect(false);
+                btnElement.className = "w-full text-left p-4 rounded-xl border-2 border-rose-400 bg-rose-100 text-rose-900 font-bold text-sm flex items-center justify-between";
+                btnElement.querySelector('i').className = "fa-solid fa-circle-xmark text-rose-600 text-lg";
+
+                optionsBtns[q.answer].className = "w-full text-left p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold text-sm flex items-center justify-between";
+
+                feedbackBox.className = "mt-4 p-4 rounded-xl text-center font-bold text-sm bg-rose-100 text-rose-800 border border-rose-300";
+                feedbackBox.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Kurang Tepat! Jawabannya adalah ${q.options[q.answer]}. ${q.explanation}`;
+            }
+
+            feedbackBox.classList.remove('hidden');
+            
+            if (currentQuestion < questions.length - 1) {
+                document.getElementById('next-btn').classList.remove('hidden');
+            } else {
+                document.getElementById('next-btn').textContent = "Lihat Hasil Kuis";
+                document.getElementById('next-btn').classList.remove('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            const resultContainer = document.getElementById('result-container');
+            resultContainer.classList.remove('hidden');
+
+            document.getElementById('final-score').textContent = score;
+
+            const resultMessage = document.getElementById('result-message');
+            const resultIcon = document.getElementById('result-icon');
+
+            if (score >= 80) {
+                resultMessage.textContent = "Luar biasa! Kamu memahami teknik dasar sepak bola dengan sangat baik! ⚽🏆";
+                resultIcon.className = "fa-solid fa-trophy text-yellow-500";
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            } else if (score >= 60) {
+                resultMessage.textContent = "Bagus! Teruskan belajarmu, sebentar lagi kamu akan jadi pemain hebat! 👍";
+                resultIcon.className = "fa-solid fa-medal text-amber-500";
+            } else {
+                resultMessage.textContent = "Jangan berkecil hati! Pelajari lagi materinya dan coba kuis ini sekali lagi ya! 💪";
+                resultIcon.className = "fa-solid fa-star-half-stroke text-emerald-500";
+            }
+        }
+
+        function resetQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('result-container').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            loadQuestion();
+        }
+
+        // Initialize quiz on load
+        window.onload = function() {
+            loadQuestion();
+        };
+    </script>
+</body>
+</html>
